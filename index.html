@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <aside class="profile">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="darkModeSwitch">
+                <label class="form-check-label" for="darkModeSwitch">Toggle Dark Mode</label>
+            </div>
+            <img src="profile.png" alt="Profile Picture">
+            <h1 class="neo-color">Simon Velasquez</h1>
+            <p class="neo-color">Valdivia - Chile</p>
+            <p class="neo-color">Web Developer</p>
+            <p class="neo-color">Pasión por el desarrollo web moderno y avanzado</p>
+            <div class="social-icons">
+                <a href="mailto:simonsebastianvelasquezcarcamo@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/siseveca79" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/simon-sebastian-velasquez-carcamo-a00491144/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <section class="about">
+                <h2 class="neo-color">Capacitaciones</h2>
+                <p class="neo-color"></p>
+                <div class="courses" id="courses-list">
+                    <!-- Aquí se mostrarán las cards de cursos -->
+                </div>
+            </section>
+            
+            <section class="technologies">
+                <h2 class="neo-color">Tecnologias</h2>
+                <div class="cards">
+                    <!-- Cards for technologies will be inserted here -->
+                </div>
+            </section>
+            
+            <section class="projects">
+                <h2 class="neo-color">Logros en GitGub</h2>
+                <div class="neo-color" id="github-repos">
+                    <!-- Aquí se mostrarán los repositorios -->
+                </div>
+                <div id="pagination-container">
+                    <!-- Aquí se mostrará la paginación -->
+                </div>
+            </section>
+            
+            <section class="open-source">
+                <h2 class="neo-color">Lecturas recomendadas</h2>
+                <p id="typing-text" class="neo-color"></p>
+            
+                <div class="libro-container">
+                    <!-- Asegúrate de que la ruta de la imagen sea correcta -->
+                    <a href="https://eloquent-javascript-es.vercel.app/">
+                        <img src="eloquent.jpg" alt="Libro" class="libro">
+                    </a>
+                    <a href="https://patterns.addy.ie/">
+                        <img src="patrones-oreilly.jpg" alt="Libro" class="libro">
+                    </a>
+                    <a href="https://exploringjs.com/impatient-js/toc.html">
+                        <img src="impatient.jpg" alt="Libro" class="libro">
+                    </a>
+                </div>
+            </section>
+            
+
+            
+            
+        </main>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        document.querySelector('.contact-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evitar el envío predeterminado del formulario
+    
+            // Recoger los datos del formulario
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+    
+            // Enviar los datos del formulario al servidor
+            fetch('/submit-contact-form', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, email, message }),
+            })
+            .then(response => response.json())
+            .then(response => {
+                const formMessage = document.querySelector('.form-message');
+                if (response.error) {
+                    formMessage.textContent = 'There was an error sending your message. Please try again later.';
+                    formMessage.style.color = 'red';
+                    console.error('Error details:', response.details);
+                } else {
+                    formMessage.textContent = 'Your message has been sent successfully!';
+                    formMessage.style.color = 'green';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                const formMessage = document.querySelector('.form-message');
+                formMessage.textContent = 'There was an error sending your message. Please try again later.';
+                formMessage.style.color = 'red';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,390 @@
+/* Estilos globales y reset */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    transition: background-color 0.3s, color 0.3s;
+    color: #212529; /* Color de texto predeterminado en modo claro */
+}
+
+/* Estructura principal */
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.profile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 150px; /* Ancho fijo */
+    height: 100vh;
+    padding: 20px;
+    background-color: #f8f9fa;
+    overflow-y: auto;
+    transition: background-color 0.3s, color 0.3s;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.profile img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.content {
+    margin-left: 150px; /* Debe coincidir con el ancho de la barra lateral */
+    padding: 20px;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.footer {
+    background-color: #f8f9fa;
+    padding: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Estilos de secciones específicas */
+.about,
+.technologies,
+.projects,
+.open-source {
+    padding: 40px; /* Espaciado aumentado para las secciones */
+}
+
+/* Componentes */
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: 120px;
+    height: 120px;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, background-color 0.3s, color 0.3s;
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tech-icon {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+.dark-mode .card {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+.dark-mode .card .tech-icon {
+    color: #ffffff;
+}
+
+.card.dragging {
+    opacity: 0.5;
+    transform: rotate(5deg);
+}
+
+/* Estilos de texto y modos */
+.dark-mode {
+    background-color: #121212;
+    color: #ffffff; /* Dark background with white text */
+}
+
+.dark-mode .profile {
+    background-color: #1e1e1e;
+    color: #ffffff; /* Dark profile background with white text */
+}
+
+.dark-mode .form-check-label,
+.dark-mode .social-icons a {
+    color: #ffffff; /* White color for switch label and social icons */
+}
+
+.dark-mode .social-icons a {
+    color: #1e90ff; /* Highlight color for social icons on hover */
+}
+
+.dark-mode .card {
+    background-color: #1e1e1e;
+    color: #ffffff; /* Dark background with white text for cards */
+}
+
+.dark-mode h2 {
+    border-color: #444;
+    color: #ffffff; /* White color for titles in dark mode */
+}
+
+.neo-color {
+    transition: color 0.3s;
+    /* color: #68D391; */
+}
+
+.dark-mode-text {
+    color: #ffffff !important; /* White text color in dark mode */
+}
+
+/* Cards específicos */
+.course-card {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: transform 0.2s ease, background-color 0.3s, color 0.3s;
+}
+
+.course-card {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.course-link {
+    color: #0366d6;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.course-link {
+    text-decoration: underline;
+}
+
+.course-platform {
+    margin-top: 5px;
+    color: #777;
+}
+
+/* Repos específicos */
+.repo-card {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.51);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: transform 0.2s ease, box-shadow 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.repo-card {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.repo-link {
+    color: #0366d6;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.repo-link {
+    text-decoration: underline;
+}
+
+.repo-desc {
+    color: #333;
+    margin-top: 5px;
+}
+
+/* Paginación */
+.pagination-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.page-link {
+    color: #0366d6;
+    text-decoration: none;
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px solid #0366d6;
+    border-radius: 3px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.page-link {
+    background-color: #0366d6;
+    color: #fff;
+}
+
+.page-link.active {
+    background-color: #0366d6;
+    color: #fff;
+    border-color: #0366d6;
+}
+
+/* Formulario de contacto */
+.contact-form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.dark-mode .contact-form {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border-color: #444;
+}
+
+.contact-form h3 {
+    margin-bottom: 15px;
+}
+
+.contact-form label {
+    margin-top: 10px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.dark-mode .contact-form input,
+.dark-mode .contact-form textarea {
+    background-color: #333;
+    color: #fff;
+    border-color: #555;
+}
+
+#typing-text {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Libros */
+.libro-container {
+    display: flex;
+    justify-content: space-around; /* Ajusta el espacio entre las imágenes */
+    margin-top: 20px; /* Espacio superior entre el título y las imágenes */
+}
+
+.libro {
+    width: 200px; /* Ancho deseado para las imágenes */
+    height: auto; /* Altura automática para mantener la proporción */
+    cursor: pointer; /* Cambia el cursor al hacer hover sobre las imágenes */
+    padding: 8px;
+}
+
+/* Estilos adicionales */
+.social-icons {
+    margin-top: 20px;
+}
+
+.social-icons a {
+    color: #212529;
+    font-size: 1.5em;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.social-icons a {
+    color: #1e90ff;
+}
+
+.form-check {
+    margin-bottom: 20px;
+}
+
+/* Estilos finales */
+.contact-form button {
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0366d6;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.contact-form button {
+    background-color: #024ea2;
+}
+
+.contact-form p {
+    margin-top: 10px;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .profile {
+        width: 100%;
+        height: auto;
+        position: static;
+        padding: 10px;
+        box-shadow: none;
+        z-index: 0;
+    }
+
+    .content {
+        margin-left: 0;
+        padding: 20px;
+    }
+}
+
+
+
+.libro-container {
+    display: flex;
+    justify-content: space-around; /* Ajusta el espacio entre las imágenes */
+    margin-top: 20px; /* Espacio superior entre el título y las imágenes */
+}
+
+.libro {
+    width: 200px; /* Ancho deseado para las imágenes */
+    height: 300px; /* Altura automática para mantener la proporción */
+    cursor: pointer; /* Cambia el cursor al hacer hover sobre las imágenes */
+    padding: 8px;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+    .libro-container {
+        flex-wrap: wrap; /* Envuelve las imágenes en pantallas pequeñas */
+        justify-content: center; /* Centra las imágenes */
+    }
+
+    .libro {
+        width: calc(50% - 16px); /* Ajusta el ancho de las imágenes al 50% del contenedor */
+        margin-bottom: 16px; /* Espacio entre las imágenes */
+    }
+}
+
+
+.dark-mode .contact-form {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border-color: #444;
+}
